@@ -1,0 +1,28 @@
+{
+  "candidate": "RSAP",
+  "version": "2026-11-03-independent-proof-robustness-v2",
+  "research_question": "Can adaptive evidence selection reduce decision cost while preserving the false-PASS bound under matched random streams, policy baselines and parameter shifts?",
+  "seeds": [701, 809, 907, 1009, 1103],
+  "episodes_per_seed": 1000,
+  "actions": ["a0", "a1", "a2", "a3", "a4"],
+  "budget": 80.0,
+  "alpha": 0.05,
+  "baselines": ["uniform_eprocess", "random_eprocess", "risk_score_eprocess", "greedy_cost", "risk_score_naive"],
+  "fairness": ["same_uniform_streams", "same_action_space", "same_budget", "same_seed_blocks"],
+  "robustness_grid": {"budgets": [40.0, 80.0, 120.0], "loss_shifts": [-0.02, 0.0, 0.02]},
+  "primary_metrics": ["unsafe_false_pass_rate", "safe_pass_coverage", "median_cost_to_decision"],
+  "secondary_metrics": ["paired_cost_difference", "paired_coverage_difference", "budget_exceeded", "trace_completeness"],
+  "proof_audit": ["binary_sequences_horizon_10", "predictable_factor_expectation"],
+  "success_rule": {
+    "unsafe_false_pass_upper_ci": "<= 0.05",
+    "safe_pass_coverage": ">= uniform_eprocess",
+    "paired_median_cost_difference_upper_ci": "< 0",
+    "robustness_grid_false_pass_upper_ci": "<= 0.05",
+    "proof_audit": "pass",
+    "budget_exceeded": "0",
+    "trace_complete": "true"
+  },
+  "claim_boundary": "bounded simulation with matched policy baselines, finite e-process audit and parameter sensitivity; enterprise scheduling and general theorem are out of scope",
+  "docker": "required_for_archive_replay",
+  "enterprise_claim": "OUT_OF_SCOPE_BY_CONTRACT"
+}

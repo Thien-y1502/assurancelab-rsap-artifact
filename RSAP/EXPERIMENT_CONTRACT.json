@@ -1,0 +1,38 @@
+{
+  "candidate": "RSAP",
+  "version": "2026-11-03-pre-registered-v1",
+  "research_question": "Can adaptive evidence selection improve safe decision coverage under a fixed audit budget without invalidating the false-PASS bound?",
+  "primary_metrics": [
+    "false_pass_rate_unsafe",
+    "safe_pass_coverage",
+    "median_cost_to_decision"
+  ],
+  "secondary_metrics": ["unknown_rate", "fail_coverage", "policy_trace_completeness"],
+  "seeds": [701, 809, 907, 1009, 1103],
+  "episodes_per_seed": 1000,
+  "actions": [
+    {"id": "a0", "cost": 1.0, "safe_loss": 0.10, "unsafe_loss": 0.65},
+    {"id": "a1", "cost": 1.5, "safe_loss": 0.08, "unsafe_loss": 0.66},
+    {"id": "a2", "cost": 2.0, "safe_loss": 0.15, "unsafe_loss": 0.64},
+    {"id": "a3", "cost": 3.0, "safe_loss": 0.05, "unsafe_loss": 0.68},
+    {"id": "a4", "cost": 4.0, "safe_loss": 0.12, "unsafe_loss": 0.67}
+  ],
+  "budget": 80.0,
+  "alpha": 0.05,
+  "tau_safe": 0.25,
+  "tau_unsafe": 0.55,
+  "baselines": ["uniform_eprocess", "greedy_cost", "risk_score_naive", "peek_stop"],
+  "falsifiers": [
+    "rsap_false_pass_rate_unsafe_above_0.05_upper_bound",
+    "rsap_safe_pass_coverage_below_uniform_eprocess",
+    "policy_trace_is_incomplete",
+    "budget_is_exceeded"
+  ],
+  "success_rule": {
+    "false_pass_rate_unsafe": "wilson_upper <= 0.05",
+    "safe_pass_coverage": ">= uniform_eprocess",
+    "budget_is_exceeded": "0"
+  },
+  "docker": "required_for_container_reproduction_but_unavailable_at_execution_time",
+  "enterprise_claim": "NOT_TESTED"
+}
