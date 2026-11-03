@@ -12,6 +12,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python -m py_compile RSAP/run_rsap.py
-      - run: python RSAP/run_rsap.py
+      - run: python -m py_compile RSAP/run_rsap_v2.py
+      - run: python RSAP/run_rsap_v2.py
       - run: python -c "import json; assert json.load(open('RSAP/results.json'))['status'] == 'PASS'"
