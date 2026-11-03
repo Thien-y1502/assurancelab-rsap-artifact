@@ -52,3 +52,7 @@ external-baseline superiority on every workload, or enterprise utility. See
 Code and artifact metadata are released under Apache-2.0. Cite the associated
 paper only after acceptance; until then, cite the repository commit and
 `MANIFEST.sha256`.
+
+The generated v2 raw trace is retained in the release ZIP; it is omitted from
+Git history because GitHub's hard 100 MB single-file limit would reject it.
+The runner regenerates the trace deterministically.
